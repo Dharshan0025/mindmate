@@ -1,0 +1,84 @@
+:root {
+    /* Base Colors */
+    --primary-color: #5d78ff;
+    --secondary-color: #6c5ce7;
+    --text-color: #2d3436;
+    --text-light: #636e72;
+    --background-color: #f5f6fa;
+    --card-bg: #ffffff;
+    --border-color: #dfe6e9;
+    
+    /* Status Colors */
+    --success-color: #00b894;
+    --warning-color: #fdcb6e;
+    --danger-color: #d63031;
+    --info-color: #0984e3;
+}
+
+/* Theme Definitions */
+[data-theme="calm"] {
+    --primary-color: #5d78ff;
+    --secondary-color: #4a61cc;
+    --card-bg: #f8f9ff;
+}
+
+[data-theme="anger"] {
+    --primary-color: #d63031;
+    --secondary-color: #b02525;
+    --card-bg: #fff8f8;
+}
+
+[data-theme="sadness"] {
+    --primary-color: #636e72;
+    --secondary-color: #4e5658;
+    --card-bg: #f8f9fa;
+}
+
+[data-theme="joy"] {
+    --primary-color: #fdcb6e;
+    --secondary-color: #e6b450;
+    --card-bg: #fffbf0;
+}
+
+[data-theme="anxiety"] {
+    --primary-color: #e17055;
+    --secondary-color: #c75e3f;
+    --card-bg: #fff5f2;
+}
+
+/* Theme Transition */
+body, .journal-entry-form, .entry-item {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme-Specific Components */
+[data-theme="anger"] .entry-item:hover {
+    border-left-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(214, 48, 49, 0.1);
+}
+
+[data-theme="joy"] .entry-item:hover {
+    border-left-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(253, 203, 110, 0.1);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #f5f6fa;
+        --text-light: #b2bec3;
+        --background-color: #2d3436;
+        --card-bg: #1e272e;
+        --border-color: #34495e;
+    }
+    
+    .entry-item {
+        background-color: #2d3436;
+    }
+    
+    input, textarea {
+        background-color: #1e272e;
+        color: white;
+        border-color: #34495e;
+    }
+}

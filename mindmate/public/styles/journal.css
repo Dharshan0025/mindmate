@@ -1,0 +1,217 @@
+/* Journal Container */
+.journal-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Entry Form */
+.journal-entry-form {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#entry-title {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.entry-date {
+    color: var(--text-light);
+    align-self: center;
+    font-size: 0.9rem;
+}
+
+/* Input Modes */
+.input-modes {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.input-mode-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.input-mode-btn.active {
+    background-color: rgba(93, 120, 255, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Text Area */
+#entry-text {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    resize: vertical;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Voice Recorder */
+#voice-recorder {
+    display: none;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#record-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#record-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.recording-status {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.recording-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: var(--danger-color);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+/* Entry Analysis */
+.entry-analysis {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: none;
+}
+
+.emotion-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.emotion-card {
+    background-color: rgba(93, 120, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.emotion-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.emotion-name {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    display: block;
+}
+
+.emotion-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Previous Entries */
+.previous-entries {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.entries-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.entry-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.entry-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+.entry-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.entry-item-title {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.entry-item-date {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.entry-item-preview {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .journal-container {
+        padding: 1rem;
+    }
+    
+    .emotion-results {
+        grid-template-columns: 1fr;
+    }
+}

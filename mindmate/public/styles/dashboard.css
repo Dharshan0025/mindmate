@@ -1,0 +1,192 @@
+/* Dashboard Layout */
+.dashboard-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.mood-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Current Mood Card */
+.current-mood-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.mood-indicator {
+    margin: 1.5rem 0;
+}
+
+.mood-emoji {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.mood-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+/* Mood Intensity */
+.mood-intensity {
+    margin-top: 1.5rem;
+}
+
+.intensity-bar {
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.intensity-level {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Suggestions */
+.mood-suggestions {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.suggestion-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 6px 6px 0 0;
+    background: none;
+    color: var(--text-light);
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    background-color: rgba(93, 120, 255, 0.1);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.suggestion-content {
+    min-height: 200px;
+}
+
+.suggestion-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.suggestion-description {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.suggestion-reason {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Analytics */
+.mood-analytics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mood-timeline, .emotion-distribution {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Insights */
+.insights-section {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.insight-card {
+    display: flex;
+    align-items: flex-start;
+    margin: 1rem 0;
+}
+
+.insight-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.risk-indicator {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.risk-indicator i {
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .mood-summary {
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    .mood-analytics {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Loading State */
+.chart-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-light);
+}

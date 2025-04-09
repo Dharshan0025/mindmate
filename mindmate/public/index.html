@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Your AI Mental Health Companion</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="/styles/journal.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="styles/themes.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="nav-header">
+                <img src="images/logo.png" alt="MindMate Logo" class="logo">
+                <h1>MindMate</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-page="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li data-page="journal">
+                    <i class="fas fa-book-open"></i>
+                    <span>Journal</span>
+                </li>
+                <li data-page="chatbot">
+                    <i class="fas fa-robot"></i>
+                    <span>Chat Companion</span>
+                </li>
+                <li data-page="therapists">
+                    <i class="fas fa-user-md"></i>
+                    <span>Find Therapists</span>
+                </li>
+                <li data-page="community">
+                    <i class="fas fa-users"></i>
+                    <span>Community</span>
+                </li>
+                <li data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+            <div class="user-profile">
+                <div class="profile-pic"></div>
+                <div class="profile-info">
+                    <span class="username">Welcome</span>
+                    <span class="user-mood">Ready to check in?</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page active-page">
+                <header class="page-header">
+                    <h2>Your Emotional Dashboard</h2>
+                    <div class="date-display" id="current-date"></div>
+                </header>
+                
+                <div class="mood-summary">
+                    <div class="current-mood-card">
+                        <h3>Today's Mood</h3>
+                        <div class="mood-indicator" id="current-mood-indicator">
+                            <div class="mood-emoji">😊</div>
+                            <div class="mood-label">Neutral</div>
+                        </div>
+                        <div class="mood-intensity">
+                            <span>Intensity</span>
+                            <div class="intensity-bar">
+                                <div class="intensity-level" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mood-suggestions">
+                        <h3>Suggestions for You</h3>
+                        <div class="suggestion-tabs">
+                            <button class="tab-btn active" data-tab="movies">Movies</button>
+                            <button class="tab-btn" data-tab="music">Music</button>
+                            <button class="tab-btn" data-tab="books">Books</button>
+                            <button class="tab-btn" data-tab="quotes">Quotes</button>
+                            <button class="tab-btn" data-tab="activities">Activities</button>
+                        </div>
+                        <div class="suggestion-content active" data-tab="movies">
+                            <!-- Movie suggestions will be loaded here -->
+                        </div>
+                        <div class="suggestion-content" data-tab="music">
+                            <!-- Music suggestions will be loaded here -->
+                        </div>
+                        <div class="suggestion-content" data-tab="books">
+                            <!-- Book suggestions will be loaded here -->
+                        </div>
+                        <div class="suggestion-content" data-tab="quotes">
+                            <!-- Quote suggestions will be loaded here -->
+                        </div>
+                        <div class="suggestion-content" data-tab="activities">
+                            <!-- Activity suggestions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mood-analytics">
+                    <div class="mood-timeline">
+                        <h3>Your Mood Timeline</h3>
+                        <canvas id="mood-timeline-chart"></canvas>
+                    </div>
+                    <div class="emotion-distribution">
+                        <h3>Emotion Distribution</h3>
+                        <canvas id="emotion-distribution-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="insights-section">
+                    <h3>AI Insights</h3>
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="insight-text">
+                            <p id="ai-insight-text">Based on your recent entries, you seem to be feeling balanced overall with occasional moments of stress. Consider trying our mindfulness exercises when you feel tension building.</p>
+                        </div>
+                    </div>
+                    <div class="risk-indicator" id="risk-indicator">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Your mental health status appears stable.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journal Page -->
+            <div id="journal-page" class="page">
+                <header class="page-header">
+                    <h2>Voice & Text Journal</h2>
+                    <div class="journal-actions">
+                        <button id="new-entry-btn" class="btn-primary">
+                            <i class="fas fa-plus"></i> New Entry
+                        </button>
+                    </div>
+                </header>
+                
+                <div class="journal-container">
+                    <div class="journal-entry-form">
+                        <div class="entry-header">
+                            <input type="text" id="entry-title" placeholder="Entry Title (Optional)">
+                            <div class="entry-date" id="entry-date"></div>
+                        </div>
+                        <div class="entry-content">
+                            <div class="input-modes">
+                                <button class="input-mode-btn active" data-mode="text">
+                                    <i class="fas fa-keyboard"></i> Text
+                                </button>
+                                <button class="input-mode-btn" data-mode="voice">
+                                    <i class="fas fa-microphone"></i> Voice
+                                </button>
+                            </div>
+                            <textarea id="entry-text" placeholder="How are you feeling today? Write or speak your thoughts..."></textarea>
+                            <div class="voice-recorder" id="voice-recorder">
+                                <button id="record-btn" class="btn-secondary">
+                                    <i class="fas fa-microphone"></i> Start Recording
+                                </button>
+                                <div class="recording-status">
+                                    <div class="recording-indicator"></div>
+                                    <span id="recording-time">00:00</span>
+                                </div>
+                                <audio id="recorded-audio" controls style="display: none;"></audio>
+                            </div>
+                        </div>
+                        <div class="entry-footer">
+                            <button id="analyze-btn" class="btn-primary">
+                                <i class="fas fa-brain"></i> Analyze Emotions
+                            </button>
+                            <button id="save-entry-btn" class="btn-primary" disabled>
+                                <i class="fas fa-save"></i> Save Entry
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="entry-analysis" id="entry-analysis">
+                        <h3>Emotion Analysis</h3>
+                        <div class="emotion-results">
+                            <div class="emotion-card">
+                                <div class="emotion-icon">😊</div>
+                                <div class="emotion-info">
+                                    <span class="emotion-name">Primary Emotion</span>
+                                    <span class="emotion-value" id="primary-emotion">-</span>
+                                </div>
+                            </div>
+                            <div class="emotion-card">
+                                <div class="emotion-icon">🧐</div>
+                                <div class="emotion-info">
+                                    <span class="emotion-name">Secondary Emotion</span>
+                                    <span class="emotion-value" id="secondary-emotion">-</span>
+                                </div>
+                            </div>
+                            <div class="emotion-card">
+                                <div class="emotion-icon">📊</div>
+                                <div class="emotion-info">
+                                    <span class="emotion-name">Sentiment Score</span>
+                                    <span class="emotion-value" id="sentiment-score">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="emotion-keywords">
+                            <h4>Key Emotional Keywords</h4>
+                            <div class="keywords-container" id="keywords-container">
+                                <!-- Keywords will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="previous-entries">
+                        <h3>Your Previous Entries</h3>
+                        <div class="entries-filter">
+                            <select id="entries-filter">
+                                <option value="all">All Entries</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="positive">Positive Mood</option>
+                                <option value="negative">Negative Mood</option>
+                            </select>
+                        </div>
+                        <div class="entries-list" id="entries-list">
+                            <!-- Journal entries will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot Page -->
+            <div id="chatbot-page" class="page">
+                <header class="page-header">
+                    <h2>AI Chat Companion</h2>
+                    <div class="chatbot-settings">
+                        <div class="chatbot-persona">
+                            <label for="persona-select">Companion Style:</label>
+                            <select id="persona-select">
+                                <option value="therapist">Therapist</option>
+                                <option value="friend">Friend</option>
+                                <option value="parent">Parent</option>
+                                <option value="mentor">Mentor</option>
+                            </select>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="chatbot-container">
+                    <div class="chatbot-messages" id="chatbot-messages">
+                        <div class="chatbot-welcome">
+                            <div class="chatbot-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="chatbot-message">
+                                <p>Hello! I'm your MindMate companion. How can I support you today? You can talk to me about anything that's on your mind.</p>
+                                <div class="quick-prompts">
+                                    <button class="quick-prompt" data-prompt="I'm feeling stressed">I'm feeling stressed</button>
+                                    <button class="quick-prompt" data-prompt="I need motivation">I need motivation</button>
+                                    <button class="quick-prompt" data-prompt="I had a bad day">I had a bad day</button>
+                                    <button class="quick-prompt" data-prompt="I'm feeling anxious">I'm feeling anxious</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbot-input">
+                        <textarea id="chatbot-input-text" placeholder="Type your message here..."></textarea>
+                        <button id="send-chatbot-message" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Therapists Page -->
+            <div id="therapists-page" class="page">
+                <header class="page-header">
+                    <h2>Find Therapists Nearby</h2>
+                    <div class="therapist-filters">
+                        <div class="filter-group">
+                            <label for="specialization-filter">Specialization:</label>
+                            <select id="specialization-filter">
+                                <option value="all">All</option>
+                                <option value="anxiety">Anxiety</option>
+                                <option value="depression">Depression</option>
+                                <option value="trauma">Trauma</option>
+                                <option value="relationships">Relationships</option>
+                                <option value="stress">Stress Management</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="distance-filter">Distance:</label>
+                            <select id="distance-filter">
+                                <option value="5">5 miles</option>
+                                <option value="10">10 miles</option>
+                                <option value="25">25 miles</option>
+                                <option value="50">50 miles</option>
+                            </select>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="therapists-container">
+                    <div class="location-permission">
+                        <p>To find therapists near you, we need your location permission.</p>
+                        <button id="enable-location" class="btn-primary">
+                            <i class="fas fa-map-marker-alt"></i> Enable Location
+                        </button>
+                    </div>
+                    
+                    <div class="therapists-list" id="therapists-list">
+                        <!-- Therapists will be loaded here -->
+                    </div>
+                    
+                    <div class="map-container" id="therapists-map">
+                        <!-- Map will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Page -->
+            <div id="community-page" class="page">
+                <header class="page-header">
+                    <h2>Community Support</h2>
+                    <div class="community-actions">
+                        <button id="new-post-btn" class="btn-primary">
+                            <i class="fas fa-plus"></i> New Post
+                        </button>
+                    </div>
+                </header>
+                
+                <div class="community-container">
+                    <div class="community-guidelines">
+                        <h3>Community Guidelines</h3>
+                        <ul>
+                            <li><i class="fas fa-heart"></i> Be kind and supportive</li>
+                            <li><i class="fas fa-lock"></i> Respect privacy - don't share personal info</li>
+                            <li><i class="fas fa-hand-holding-heart"></i> Offer encouragement, not medical advice</li>
+                            <li><i class="fas fa-flag"></i> Report any concerning posts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="post-form" id="post-form">
+                        <div class="post-header">
+                            <div class="anonymous-toggle">
+                                <input type="checkbox" id="post-anonymously" checked>
+                                <label for="post-anonymously">Post Anonymously</label>
+                            </div>
+                        </div>
+                        <textarea id="post-content" placeholder="Share your thoughts with the community..."></textarea>
+                        <div class="mood-selector">
+                            <span>Current Mood:</span>
+                            <div class="mood-options">
+                                <input type="radio" id="mood-happy" name="mood" value="happy">
+                                <label for="mood-happy" title="Happy">😊</label>
+                                
+                                <input type="radio" id="mood-sad" name="mood" value="sad">
+                                <label for="mood-sad" title="Sad">😢</label>
+                                
+                                <input type="radio" id="mood-angry" name="mood" value="angry">
+                                <label for="mood-angry" title="Angry">😠</label>
+                                
+                                <input type="radio" id="mood-anxious" name="mood" value="anxious">
+                                <label for="mood-anxious" title="Anxious">😰</label>
+                                
+                                <input type="radio" id="mood-neutral" name="mood" value="neutral" checked>
+                                <label for="mood-neutral" title="Neutral">😐</label>
+                            </div>
+                        </div>
+                        <button id="submit-post" class="btn-primary">Post</button>
+                    </div>
+                    
+                    <div class="posts-feed" id="posts-feed">
+                        <!-- Community posts will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="page">
+                <header class="page-header">
+                    <h2>Settings</h2>
+                </header>
+                
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>Account</h3>
+                        <div class="setting-item">
+                            <label for="notification-toggle">Email Notifications</label>
+                            <label class="switch">
+                                <input type="checkbox" id="notification-toggle" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label for="dark-mode-toggle">Dark Mode</label>
+                            <label class="switch">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label for="theme-color">Theme Color</label>
+                            <select id="theme-color">
+                                <option value="auto">Auto (Based on Mood)</option>
+                                <option value="blue">Blue</option>
+                                <option value="green">Green</option>
+                                <option value="purple">Purple</option>
+                                <option value="red">Red</option>
+                                <option value="yellow">Yellow</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Privacy</h3>
+                        <div class="setting-item">
+                            <label for="data-sharing">Share Anonymous Data for Research</label>
+                            <label class="switch">
+                                <input type="checkbox" id="data-sharing">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label for="emergency-contact">Emergency Contact</label>
+                            <input type="text" id="emergency-contact" placeholder="Name or phone number">
+                        </div>
+                        <button id="export-data" class="btn-secondary">
+                            <i class="fas fa-download"></i> Export My Data
+                        </button>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>About</h3>
+                        <div class="about-info">
+                            <p>MindMate v1.0.0</p>
+                            <p>© 2023 MindMate Inc. All rights reserved.</p>
+                            <p>This app is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                        </div>
+                        <button id="privacy-policy" class="btn-text">Privacy Policy</button>
+                        <button id="terms-of-service" class="btn-text">Terms of Service</button>
+                        <button id="logout" class="btn-secondary">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading MindMate...</p>
+    </div>
+
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="install-prompt">
+        <div class="install-content">
+            <p>Install MindMate for a better experience?</p>
+            <div class="install-buttons">
+                <button id="install-cancel" class="btn-text">Not Now</button>
+                <button id="install-confirm" class="btn-primary">Install</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1"></script>
+    <script src="scripts/firebase.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/gemini.js"></script>
+    <script src="scripts/journal.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script src="scripts/chatbot.js"></script>
+</body>
+</html>

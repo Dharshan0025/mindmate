@@ -1,0 +1,23 @@
+{
+  "name": "MindMate",
+  "short_name": "MindMate",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#5d78ff",
+  "description": "AI-powered mental health companion",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
